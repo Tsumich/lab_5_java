@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.lab5.FlagController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <HBox spacing="30.0" alignment="CENTER">
+
+        <VBox spacing="15.0">
+            <Label text="Верхняя полоса" style="-fx-font-weight: bold;"/>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="topRed" text="Красный"/>
+                <RadioButton fx:id="topGreen" text="Зеленый"/>
+                <RadioButton fx:id="topBlue" text="Синий"/>
+            </HBox>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="topWhite" text="Белый"/>
+                <RadioButton fx:id="topBlack" text="Черный"/>
+            </HBox>
+
+            <Label text="Средняя полоса" style="-fx-font-weight: bold;" VBox.vgrow="ALWAYS"/>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="midRed" text="Красный"/>
+                <RadioButton fx:id="midGreen" text="Зеленый"/>
+                <RadioButton fx:id="midBlue" text="Синий"/>
+            </HBox>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="midWhite" text="Белый"/>
+                <RadioButton fx:id="midBlack" text="Черный"/>
+            </HBox>
+
+            <Label text="Нижняя полоса" style="-fx-font-weight: bold;"/>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="botRed" text="Красный"/>
+                <RadioButton fx:id="botGreen" text="Зеленый"/>
+                <RadioButton fx:id="botBlue" text="Синий"/>
+            </HBox>
+            <HBox spacing="10.0">
+                <RadioButton fx:id="botWhite" text="Белый"/>
+                <RadioButton fx:id="botBlack" text="Черный"/>
+            </HBox>
+
+            <Button text="Нарисовать" onAction="#drawFlag" prefWidth="200.0" style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        </VBox>
+
+        <VBox spacing="15.0" alignment="CENTER">
+            <VBox alignment="CENTER">
+                <Rectangle fx:id="topStripe" width="200.0" height="50.0" stroke="BLACK"/>
+                <Rectangle fx:id="midStripe" width="200.0" height="50.0" stroke="BLACK"/>
+                <Rectangle fx:id="botStripe" width="200.0" height="50.0" stroke="BLACK"/>
+            </VBox>
+
+            <Label fx:id="resultLabel" text="Выберите цвета и нажмите Нарисовать" style="-fx-font-size: 16px; -fx-text-fill: #333;"/>
+        </VBox>
+
+    </HBox>
+
+</AnchorPane>

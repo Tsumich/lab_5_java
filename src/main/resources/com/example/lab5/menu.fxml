@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab5.MenuController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+
+    <VBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+
+        <ImageView fx:id="currentProduct" pickOnBounds="true" preserveRatio="true" fitHeight="200.0">
+            <Image url="@/1.png"/>
+        </ImageView>
+
+        <Label fx:id="currentProductName" text="Empty" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+        <HBox alignment="CENTER" spacing="20.0">
+            <Label fx:id="currentProductPrice" text="Цена: 0" style="-fx-font-size: 16px;"/>
+
+            <HBox alignment="CENTER" spacing="5.0">
+                <Label text="Кол-во:"/>
+                <Label fx:id="currentProductCount" text="0" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+            </HBox>
+        </HBox>
+        <HBox spacing="10.0">
+            <Button fx:id="add" onAction="#addProduct" text="Добавить" prefWidth="150.0" prefHeight="40.0" style="-fx-font-size: 16px;"/>
+            <Button fx:id="remove" onAction="#removeProduct" text="Убрать" prefWidth="150.0" prefHeight="40.0" style="-fx-font-size: 16px;"/>
+        </HBox>
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <ImageView pickOnBounds="true" preserveRatio="true" fitHeight="50.0">
+            <Image url="@/logo.jpg"/>
+        </ImageView>
+
+        <GridPane fx:id="dishesGrid" hgap="10.0" vgap="10.0"/>
+
+        <ListView fx:id="cartList" prefHeight="150.0" prefWidth="300.0"/>
+
+        <Button alignment="BOTTOM_CENTER" onAction="#checkout" text="Сформировать чек" prefHeight="40.0" prefWidth="200.0" style="-fx-font-size: 16px;"/>
+
+    </VBox>
+
+    <columnConstraints>
+        <ColumnConstraints minWidth="300.0" prefWidth="350.0" />
+        <ColumnConstraints minWidth="300.0" prefWidth="350.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+</GridPane>

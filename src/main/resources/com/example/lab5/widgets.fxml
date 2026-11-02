@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<GridPane alignment="CENTER" hgap="20.0" vgap="10.0"
+          xmlns="http://javafx.com/javafx/17.0.2-ea"
+          xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.example.lab5.WidgetController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <!-- Виджет 1: два ImageView, переключаются одним чекбоксом -->
+    <StackPane GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <ImageView fx:id="noAnime" pickOnBounds="true" preserveRatio="true" fitWidth="120.0" fitHeight="120.0">
+            <Image url="@/1.png"/>
+        </ImageView>
+        <ImageView fx:id="animeImage" pickOnBounds="true" preserveRatio="true" fitWidth="120.0" fitHeight="120.0"
+                   visible="false">
+            <Image url="@/2.jpg"/>
+        </ImageView>
+    </StackPane>
+    <CheckBox fx:id="checkAnime" text="Стать аниме" onAction="#changeToAnime"
+              GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+    <!-- Виджет 2 -->
+    <ImageView fx:id="image2" preserveRatio="true" fitWidth="120.0" fitHeight="120.0"
+               GridPane.rowIndex="0" GridPane.columnIndex="1">
+        <Image url="@/logo.jpg"/>
+    </ImageView>
+    <CheckBox fx:id="check2" text="Показать виджет 2" selected="true"
+              onAction="#toggleWidget2"
+              GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <!-- Виджет 3 -->
+    <ImageView fx:id="image3" preserveRatio="true" fitWidth="120.0" fitHeight="120.0"
+               GridPane.rowIndex="0" GridPane.columnIndex="2">
+        <Image url="@/kiri.jpg"/>
+    </ImageView>
+    <CheckBox fx:id="check3" text="Показать виджет 3" selected="true"
+              onAction="#toggleWidget3"
+              GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER"/>
+        <ColumnConstraints halignment="CENTER"/>
+        <ColumnConstraints halignment="CENTER"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+</GridPane>
