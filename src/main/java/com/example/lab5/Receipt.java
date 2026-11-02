@@ -46,4 +46,11 @@ public class Receipt {
         return total;
     }
 
+    public int getQuantity(Product selectedProduct) {
+        return basket.getOrDefault(selectedProduct, 0);
+    }
+
+    public Map<Product, Integer> getBasket() {
+        return basket;
+    }
 }

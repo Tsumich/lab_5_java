@@ -11,9 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MenuController {
 
@@ -30,13 +28,12 @@ public class MenuController {
     @FXML
     private ListView<String> cartList;
 
-
     private final Product cola = new Product("Кириешки", 22.0, "kiri");
     private final Product coffee = new Product("Эспрессо", 40.0, "coffee");
     private final Product onigiri = new Product("Онигири с васаби", 80.0, "onigiri");
     private final Product chips = new Product("Чипсы", 90.0, "chips");
 
-    private final Map<Product, Integer> cart = new HashMap<>();
+    private final Receipt receipt = new Receipt();
     private final ObservableList<String> cartView = FXCollections.observableArrayList();
 
     private Product selectedProduct;
@@ -60,7 +57,7 @@ public class MenuController {
             imageView.setFitHeight(80);
             imageView.setPreserveRatio(true);
 
-            if(index == 0){
+            if (index == 0) {
                 selectedProduct = product;
                 currentProduct.setImage(imageView.getImage());
                 currentProductName.setText(product.getName());
@@ -84,36 +81,36 @@ public class MenuController {
                 row++;
             }
         }
-
     }
 
     public void addProduct(ActionEvent e) {
         if (selectedProduct == null) return;
-        cart.merge(selectedProduct, 1, Integer::sum);
+        receipt.addProduct(selectedProduct);
         refreshCounter();
         refreshCartView();
     }
 
     public void removeProduct(ActionEvent e) {
         if (selectedProduct == null) return;
-        cart.computeIfPresent(selectedProduct, (p, q) -> q > 1 ? q - 1 : null);
+        receipt.removeProduct(selectedProduct);
         refreshCounter();
         refreshCartView();
     }
 
-    public void checkout(ActionEvent actionEvent) {
-        double total = cart.entrySet().stream()
-                .mapToDouble(en -> en.getKey().getPrice() * en.getValue())
-                .sum();
-        cartView.add("ИТОГО: " + total + " руб.");
-    }
-
     private void refreshCounter() {
-        currentProductCount.setText(String.valueOf(cart.getOrDefault(selectedProduct, 0)));
+        int count = receipt.getQuantity(selectedProduct);
+        currentProductCount.setText(String.valueOf(count));
     }
 
     private void refreshCartView() {
         cartView.clear();
-        cart.forEach((p, q) -> cartView.add(p.getName() + " x" + q + " = " + (p.getPrice() * q) + " руб."));
+        receipt.getBasket().forEach((product, quantity) ->
+                cartView.add(product.getName() + " x" + quantity + " = " + (product.getPrice() * quantity) + " руб.")
+        );
+    }
+
+    public void checkout(ActionEvent actionEvent) {
+        double total = receipt.getTotalPrice();
+        cartView.add("ИТОГО: " + total + " руб.");
     }
 }
